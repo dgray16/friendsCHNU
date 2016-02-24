@@ -18,7 +18,7 @@ class Module extends \yii\base\Module
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'update', 'create', 'delete'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],

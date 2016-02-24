@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "dmstr/yii2-adminlte-asset": "2.*",
         "omgdef/yii2-multilingual-behavior": "^2.1",
-        "2amigos/yii2-tinymce-widget": "~1.1"
+        "2amigos/yii2-tinymce-widget": "~1.1",
+        "pjhl/yii2-multilanguage": "~0.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
