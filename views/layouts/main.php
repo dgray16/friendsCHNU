@@ -42,11 +42,21 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <div>
-            <a href="#" class="multilanguage-set" data-language="1">EN</a>
-            <a href="#" class="multilanguage-set" data-language="2">UK</a>
+        <div class="col-md-9">
+            <?= $content ?>
         </div>
-        <?= $content ?>
+
+        <div class="col-md-3">
+            <div>
+                <a href="#" class="multilanguage-set" data-language="1">EN</a>
+                <a href="#" class="multilanguage-set" data-language="2">UK</a>
+            </div>
+
+            <div>
+                <?=\app\widgets\ProfileWidget::widget()?>
+            </div>
+        </div>
+
     </div>
 </div>
 
