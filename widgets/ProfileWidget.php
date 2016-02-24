@@ -24,6 +24,8 @@ class ProfileWidget extends Widget
             ]);
         }
 
-        return $this->render('profile/menu');
+        return $this->render('profile/menu', [
+            'user' => \Yii::$app->user->identity
+        ]);
     }
 }
