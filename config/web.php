@@ -18,9 +18,16 @@ $config = [
             'identityClass' => 'app\models\user\User',
             'enableAutoLogin' => true,
         ],
+
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'cache' => 'cache'
+        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => true,
