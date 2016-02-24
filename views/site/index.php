@@ -2,5 +2,5 @@
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::$app->name;
+$this->title = \app\components\TitleHelper::getTitle()
 ?>
