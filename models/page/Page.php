@@ -57,6 +57,8 @@ class Page extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'updated_at'], 'integer'],
+            [['title', 'content', 'title_en', 'content_en', 'slug'], 'required'],
+            [['title', 'content', 'title_en', 'content_en', 'slug'], 'string']
         ];
     }
 
@@ -67,8 +69,13 @@ class Page extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'created_at' => 'Створено',
+            'updated_at' => 'Оновлено',
+            'slug' => 'Аліас',
+            'title' => 'Заговок',
+            'title_en' => 'Заголовок (English)',
+            'content' => 'Текст',
+            'title_en' => 'Текст (English)',
         ];
     }
 
