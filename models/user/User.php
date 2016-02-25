@@ -6,6 +6,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\web\UploadedFile;
 
 /**
  * User model
@@ -25,6 +26,12 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const SCENARIO_REGISTER = 'register';
+
+    public $password;
+    public $password_repeat;
+
+    private $image;
 
     /**
      * @inheritdoc
@@ -44,15 +51,37 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function scenarios()
+    {
+        return array_merge(parent::scenarios(), [
+            self::SCENARIO_REGISTER => ['email', 'password', 'password_repeat']
+        ]);
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
+            [['email'], 'required'],
+            [['password', 'password_repeat'], 'required', 'on' => self::SCENARIO_REGISTER],
+            ['password_repeat', 'validateRepeat'],
+            ['email', 'email'],
+            ['email', 'unique'],
+            ['username', 'default', 'value' => 'empty'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['avatar', 'file']
         ];
+    }
+
+
+    public function validateRepeat($attribute, $params)
+    {
+        if ($this->password !== $this->password_repeat) {
+            $this->addError($attribute, Yii::t('common', 'Password must match'));
+        }
     }
 
     /**
@@ -184,7 +213,52 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    public function getInfo() {
+    public function getInfo()
+    {
         return $this->hasOne(UserInfo::className(), ['user_id' => 'id']);
+    }
+
+    public function upload()
+    {
+        $this->image = UploadedFile::getInstance($this, 'avatar');
+
+        if ($this->image instanceof UploadedFile) {
+            $path = Yii::getAlias('@webroot/uploads/avatar');
+            $uploadPath = Yii::getAlias('@webroot/uploads');
+
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath);
+            }
+
+
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+
+
+            if (!$this->isNewRecord and $this->getOldAttribute('avatar')) {
+                if (file_exists($path . '/' . $this->getOldAttribute('avatar'))) {
+                    unlink($path . '/' . $this->getOldAttribute('avatar'));
+                }
+            }
+
+            $fileName = md5(microtime()) . '.' . $this->image->extension;
+
+            $this->image->saveAs($path . '/' . $fileName);
+            $this->avatar = $fileName;
+
+            return;
+        }
+
+        $this->avatar = $this->getOldAttribute('avatar');
+    }
+
+    public function getAvatarUrl()
+    {
+        if ($this->avatar) {
+            return '/uploads/avatar/' . $this->avatar;
+        }
+
+        return null;
     }
 }

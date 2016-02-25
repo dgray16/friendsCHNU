@@ -70,7 +70,8 @@ $config = [
     ],
 
     'modules' => [
-        'admin' => 'app\modules\admin\Module'
+        'admin' => 'app\modules\admin\Module',
+        'profile' => 'app\modules\profile\Module'
     ],
 
     'params' => $params,

@@ -8,5 +8,10 @@ return [
     'Password' => 'Пароль',
     'Incorrect email or password.' => 'Невірний email або пароль',
     'Sign Out' => 'Вихід',
-    'Remember Me' => "Запам'ятати мене"
+    'Remember Me' => "Запам'ятати мене",
+    'News' => 'Новини',
+    'Events' => 'Події',
+    'Graduates' => 'Випускники',
+    'Adwords' => 'Оголошення',
+    'Search' => 'Пошук',
 ];

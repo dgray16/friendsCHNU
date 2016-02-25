@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\components\Controller;
 use app\models\user\ClientLoginForm;
+use app\models\user\User;
+use app\models\user\UserInfo;
 use pjhl\multilanguage\components\AdvancedController;
 use Yii;
 use yii\filters\AccessControl;
@@ -80,17 +82,42 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionRegistration() {
+        $user = new User();
+        $userInfo = new UserInfo();
 
-    /**
-     * @param ClientLoginForm $model
-     * @return array
-     */
-    protected function performAjaxValidation($model)
-    {
-        if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
-            $model->validate();
+        $user->setScenario(User::SCENARIO_REGISTER);
 
-            return $model->errors;
+        if (Yii::$app->request->isAjax) {
+            $user->load(Yii::$app->request->getBodyParams());
+            $userInfo->load(Yii::$app->request->getBodyParams());
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return array_merge(ActiveForm::validate($user));
         }
+
+        if (Yii::$app->request->isPost) {
+            $user->load(Yii::$app->request->getBodyParams());
+            $userInfo->load(Yii::$app->request->getBodyParams());
+
+            $user->setPassword($user->password);
+
+            if ($user->save()) {
+                $userInfo->user_id = $user->id;
+
+                if ($userInfo->save()) {
+                    Yii::$app->user->login($user);
+                    return $this->redirect(['/profile']);
+                }
+            }
+
+            return $this->redirect(['/']);
+        }
+
+        return $this->render('registration', [
+            'user' => $user,
+            'userInfo' => $userInfo
+        ]);
     }
 }

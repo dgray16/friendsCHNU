@@ -26,22 +26,25 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => \app\components\NavHelper::buildMenuItems()
-    ]);
-    NavBar::end();
-    ?>
-
     <div class="container">
+        <div class="header-image"
+             style="background: url('/images/<?= \app\components\LanguageHelper::getLanguage() ?>.header.jpg')"></div>
+
+        <div class="row">
+            <?php
+            NavBar::begin([
+                'options' => [
+                    'class' => 'navbar-default',
+                ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-left'],
+                'items' => \app\components\NavHelper::buildMenuItems()
+            ]);
+            NavBar::end();
+            ?>
+        </div>
+
         <div class="col-md-9">
             <?= $content ?>
         </div>
@@ -53,12 +56,13 @@ AppAsset::register($this);
             </div>
 
             <div>
-                <?=\app\widgets\ProfileWidget::widget()?>
+                <?= \app\widgets\ProfileWidget::widget() ?>
             </div>
         </div>
 
     </div>
 </div>
+
 
 <footer class="footer">
     <div class="container">
@@ -67,7 +71,6 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
 <?php $this->endBody() ?>
 </body>
 </html>

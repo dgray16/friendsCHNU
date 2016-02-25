@@ -15,6 +15,11 @@ class NavHelper
         return [
             ['label' => \Yii::t('common', 'Home'), 'url' => ['/site/index']],
             ['label' => \Yii::t('common', 'About'), 'url' => ['/page/index', 'slug' => 'about']],
+            ['label' => \Yii::t('common', 'News'), 'url' => ['#']],
+            ['label' => \Yii::t('common', 'Events'), 'url' => ['#']],
+            ['label' => \Yii::t('common', 'Graduates'), 'url' => ['#']],
+            ['label' => \Yii::t('common', 'Adwords'), 'url' => ['#']],
+            ['label' => \Yii::t('common', 'Search'), 'url' => ['/search']],
         ];
     }
 }
