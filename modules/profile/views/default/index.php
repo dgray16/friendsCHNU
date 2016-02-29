@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 ?>
 <?php
 
@@ -25,8 +26,16 @@ $form = ActiveForm::begin([
         <?=$form->field($user->info, 'first_name')?>
         <?=$form->field($user->info, 'last_name')?>
         <?=$form->field($user->info, 'sur_name')?>
-        <?=$form->field($user->info, 'telephone')?>
-        <?=$form->field($user->info, 'birth_day')?>
+        <?=$form->field($user->info, 'telephone')->widget(\yii\widgets\MaskedInput::className(), [
+            'mask' => '38 (099)-99-99-999',
+        ])?>
+        <?=$form->field($user->info, 'birth_day')->widget(
+            DatePicker::className(), [
+            'clientOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-m-d'
+            ]
+        ]);?>
         <?=$form->field($user->info, 'entry_year')?>
         <?=$form->field($user->info, 'graduation_year')?>
         <?=$form->field($user->info, 'description')->textarea()?>

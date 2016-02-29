@@ -13,20 +13,5 @@ use yii\filters\AccessControl;
 
 class Module extends \yii\base\Module
 {
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     public $controllerPath = 'app/modules/profile/controllers';
 }

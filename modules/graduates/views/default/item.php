@@ -8,7 +8,7 @@
     <div class="card">
         <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
         <div class="avatar">
-            <img src="<?=$model->avatarUrl?>" alt="" />
+            <img style="background-image: url(<?=$model->avatarUrl?>)"/>
         </div>
         <div class="content">
             <p><?=$model->info->sur_name?> <?=$model->info->first_name?></p>

@@ -57,6 +57,10 @@ class SiteController extends Controller
     }
 
     public function actionLogin() {
+        if (Yii::$app->request->isGet) {
+            return $this->redirect(['/']);
+        }
+
         $model = new ClientLoginForm();
         $model->load(Yii::$app->request->getBodyParams());
 
