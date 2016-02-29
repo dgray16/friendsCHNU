@@ -12,6 +12,6 @@ namespace app\components;
 class TitleHelper
 {
     public static function getTitle($title = null) {
-        return ($title ? $title . ' ' : null) . \Yii::t('common', '"Association of Alumni and Friends of Chernivtsi University"');
+        return ($title ? $title . ' | ' : null) . \Yii::t('common', '"Association of Alumni and Friends of Chernivtsi University"');
     }
 }

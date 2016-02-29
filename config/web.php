@@ -71,7 +71,8 @@ $config = [
 
     'modules' => [
         'admin' => 'app\modules\admin\Module',
-        'profile' => 'app\modules\profile\Module'
+        'profile' => 'app\modules\profile\Module',
+        'graduates' => 'app\modules\graduates\Module',
     ],
 
     'params' => $params,

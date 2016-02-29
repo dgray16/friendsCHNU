@@ -259,6 +259,6 @@ class User extends ActiveRecord implements IdentityInterface
             return '/uploads/avatar/' . $this->avatar;
         }
 
-        return null;
+        return '/images/no-avatar.jpg';
     }
 }
