@@ -21,8 +21,7 @@ $config = [
             'multilanguageHideDefaultPrefix' => true,
             'class' => 'pjhl\multilanguage\components\AdvancedUrlManager',
             'rules' => [
-                '/' => 'site/index',
-                'page/<slug>' => 'page/index'
+
             ]
         ],
 
@@ -73,6 +72,7 @@ $config = [
         'admin' => 'app\modules\admin\Module',
         'profile' => 'app\modules\profile\Module',
         'graduates' => 'app\modules\graduates\Module',
+        'search' => 'app\modules\search\Module',
     ],
 
     'params' => $params,
