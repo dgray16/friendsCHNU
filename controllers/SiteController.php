@@ -98,7 +98,7 @@ class SiteController extends Controller
 
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-            return array_merge(ActiveForm::validate($user));
+            return array_merge(ActiveForm::validate($user),ActiveForm::validate($userInfo));
         }
 
         if (Yii::$app->request->isPost) {

@@ -42,7 +42,17 @@ class UserInfo extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['first_name', 'last_name', 'sur_name', 'telephone'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['entry_year','graduation_year'],'year_validation']
         ];
+    }
+
+/*
+ *
+ * */
+    public function year_validation($attribute, $params){
+        if($this->$attribute < 1940 and $this->$attribute > (date("Y") + 1)) {
+            $this->addError($attribute,Yii::t('common','Date must be in range from 1940 to '.date('Y') +1));
+        }
     }
 
     /**
