@@ -51,16 +51,16 @@ class UserInfo extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'sur_name' => 'Sur Name',
-            'birth_day' => 'Birth Day',
-            'telephone' => 'Telephone',
-            'entry_year' => 'Entry Year',
-            'graduation_year' => 'Graduation Year',
-            'description' => 'Description',
+            'id' => Yii::t('profile', 'ID'),
+            'user_id' => Yii::t('profile', 'User ID'),
+            'first_name' => Yii::t('profile', 'First Name'),
+            'last_name' => Yii::t('profile', 'Last Name'),
+            'sur_name' => Yii::t('profile', 'Sur Name'),
+            'birth_day' => Yii::t('profile', 'Birth Day'),
+            'telephone' => Yii::t('profile', 'Telephone'),
+            'entry_year' => Yii::t('profile', 'Entry Year'),
+            'graduation_year' => Yii::t('profile', 'Graduation Year'),
+            'description' => Yii::t('profile', 'Description'),
         ];
     }
 

@@ -262,3 +262,5 @@ class User extends ActiveRecord implements IdentityInterface
         return '/images/no-avatar.jpg';
     }
 }
+
+?>
